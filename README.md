@@ -27,19 +27,19 @@ $ composer require bilginpro/agency-aa
 
 ``` php
 $crawler = new \BilginPro\Agency\Aa\Crawler([
-    'xCode' => 'your-x-parameter',
-    'yCode' => 'your-y-parameter',
-    'limit' => 10, // optional
-    'summaryLength' => 150 // optional
+    'userName' => 'your-username',
+    'password' => 'your-password'
 ]);
 
-$news = $crawler->crawl();
+$news = $crawler->crawl([
+    'limit' => 10, //optional
+]);
 ```
-Calling `$crawler->crawl` will return an array like this:
+Calling `$crawler->crawl()` will return an array like this:
 
 ```php
 [{
-		"code": "737561a6b989cb305300fd60995140fe",
+		"code": "aa:text:20170831:12935896",
 		"title": "Title of the news 1",
 		"summary": "Summary...",
 		"content": "Content 1",
@@ -49,7 +49,7 @@ Calling `$crawler->crawl` will return an array like this:
 		"images": ["http:\/\/path\/to\/news1\/image1", "http:\/\/path\/to\/news1\/image2"]
 	},
 	{
-		"code": "737561a6b989cb305300fd60995140fc",
+		"code": "aa:text:20170831:12935899",
 		"title": "Title of the news 2",
 		"summary": "Summary...",
 		"content": "Content 2",
