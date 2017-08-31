@@ -92,11 +92,13 @@ class Crawler
         $news->title = (string)$xml->itemSet->newsItem->contentMeta->headline;
         $news->summary = (string)$xml->itemSet->newsItem->contentSet->inlineXML->nitf->body->{'body.head'}->abstract;
         $news->content = (string)$xml->itemSet->newsItem->contentSet->inlineXML->nitf->body->{'body.content'};
-        $news->created_at = (new Carbon($xml->itemSet->newsItem->itemMeta->versionCreated))->addHours(3)->format('d.m.Y H:i:s');
+        $news->created_at = (new Carbon($xml->itemSet->newsItem->itemMeta->versionCreated))
+            ->addHours(3)->format('d.m.Y H:i:s');
         $news->category = (string)$xml->xpath('//n:subject/n:name[@xml:lang="tr"]')[0];
         $news->city = '';
         if (isset($xml->xpath('//n:contentMeta/n:located[@type="cptype:city"]/n:name[@xml:lang="tr"]')[0])) {
-            $news->city = (string)$xml->xpath('//n:contentMeta/n:located[@type="cptype:city"]/n:name[@xml:lang="tr"]')[0];
+            $news->city = (string)$xml
+                ->xpath('//n:contentMeta/n:located[@type="cptype:city"]/n:name[@xml:lang="tr"]')[0];
         }
         $news->images = [];
         if (isset($xml->xpath('//n:newsItem/n:itemMeta/n:link[@rel="irel:seeAlso"]')[0]['residref'])) {
