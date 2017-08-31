@@ -82,7 +82,7 @@ class Crawler
 
     /**
      * Creates a news object from NewsML SimpleXmlElement instance.
-     * @param $xml \SimpleXMLElement
+     * @param \SimpleXMLElement $xml
      * @return \stdClass
      */
     public function newsmlToNews($xml)
@@ -110,8 +110,8 @@ class Crawler
 
     /**
      * Creates document link for next requests.
-     * @param $id string
-     * @param $format string
+     * @param string $id
+     * @param string $format
      * @return string
      */
     public function getDocumentLink($id, $format)
@@ -209,7 +209,7 @@ class Crawler
 
     /**
      * Fethches given url and returns response as string.
-     * @param $url
+     * @param string $url
      * @param string $method
      * @param array $options
      *
@@ -227,8 +227,8 @@ class Crawler
 
     /**
      * Cuts the given string from the end of the appropriate word.
-     * @param $str
-     * @param $len
+     * @param string $str
+     * @param int $len
      * @return string
      */
     public function shortenString($str, $len)
