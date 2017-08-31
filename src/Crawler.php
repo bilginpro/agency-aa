@@ -85,7 +85,7 @@ class Crawler
      * @param \SimpleXMLElement $xml
      * @return \stdClass
      */
-    public function newsmlToNews($xml)
+    protected function newsmlToNews($xml)
     {
         $news = new \stdClass();
         $xml->registerXPathNamespace("n", "http://iptc.org/std/nar/2006-10-01/");
@@ -114,7 +114,7 @@ class Crawler
      * @param string $format
      * @return string
      */
-    public function getDocumentLink($id, $format)
+    protected function getDocumentLink($id, $format)
     {
         return self::API_BASE_URL . '/document/' . $id . '/' . $format;
     }
@@ -124,7 +124,7 @@ class Crawler
      * @param $id
      * @return null|\SimpleXMLElement
      */
-    public function document($id)
+    protected function document($id)
     {
         $xml = null;
         $url = self::API_BASE_URL . '/abone/document/' . $id . '/newsml29?v=2' . rand(1000, 9999);
@@ -137,7 +137,7 @@ class Crawler
      * Searchs documents with given filter attributes.
      * @return mixed
      */
-    public function search()
+    protected function search()
     {
         $res = $this->fetchUrl(self::API_BASE_URL . '/abone/search', 'POST', [
             'auth' => $this->auth,
@@ -162,7 +162,7 @@ class Crawler
      * @param string $text
      * @return string
      */
-    public function createSummary($text)
+    protected function createSummary($text)
     {
         if (strpos($text, '(DHA)') > 0) {
             $split = explode('(DHA)', $text);
@@ -180,7 +180,7 @@ class Crawler
      * Sets config parameters.
      * @param $config
      */
-    public function setParameters($config)
+    protected function setParameters($config)
     {
         if (!is_array($config)) {
             throw new \InvalidArgumentException('$config variable must be an array.');
@@ -199,7 +199,7 @@ class Crawler
      * Sets filter attributes.
      * @param $attributes array
      */
-    public function setAttributes($attributes)
+    protected function setAttributes($attributes)
     {
         foreach ($attributes as $key => $value) {
             $this->attributes[$key] = $value;
@@ -215,7 +215,7 @@ class Crawler
      *
      * @return string
      */
-    public function fetchUrl($url, $method = 'GET', $options = [])
+    protected function fetchUrl($url, $method = 'GET', $options = [])
     {
         $client = new GuzzleHttp\Client();
         $res = $client->request($method, $url, $options);
@@ -231,7 +231,7 @@ class Crawler
      * @param int $len
      * @return string
      */
-    public function shortenString($str, $len)
+    protected function shortenString($str, $len)
     {
         if (strlen($str) > $len) {
             $str = rtrim(mb_substr($str, 0, $len, 'UTF-8'));
@@ -247,7 +247,7 @@ class Crawler
      * @param $str
      * @return string
      */
-    public function titleCase($str)
+    protected function titleCase($str)
     {
         $str = mb_convert_case($str, MB_CASE_TITLE, 'UTF-8');
         return $str;
