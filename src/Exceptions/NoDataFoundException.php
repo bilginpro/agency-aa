@@ -14,5 +14,4 @@ namespace BilginPro\Agency\Aa\Exceptions;
  */
 class NoDataFoundException extends Exception
 {
-
 }
