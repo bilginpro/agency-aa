@@ -21,7 +21,7 @@ class Crawler
     /**
      * @var string
      */
-    protected $userName = '';
+    protected $user_name = '';
 
     /**
      * @var string
@@ -31,7 +31,7 @@ class Crawler
     /**
      * @var int
      */
-    protected $summaryLength = 150;
+    protected $summary_length = 150;
 
     /**
      * @var array
@@ -172,7 +172,7 @@ class Crawler
                 $text = trim($text, ' \t\n\r\0\x0B-');
             }
         }
-        $summary = (string)$this->shortenString(strip_tags($text), $this->summaryLength);
+        $summary = (string)$this->shortenString(strip_tags($text), $this->summary_length);
 
         return $summary;
     }
@@ -186,14 +186,14 @@ class Crawler
         if (!is_array($config)) {
             throw new \InvalidArgumentException('$config variable must be an array.');
         }
-        if (array_key_exists('userName', $config)) {
-            $this->userName = $config['userName'];
+        if (array_key_exists('user_name', $config)) {
+            $this->user_name = $config['user_name'];
         }
-        if (array_key_exists('password', $config)) {
-            $this->password = $config['password'];
+        if (array_key_exists('user_name', $config)) {
+            $this->password = $config['user_name'];
         }
 
-        $this->auth = [$this->userName, $this->password];
+        $this->auth = [$this->user_name, $this->password];
     }
 
     /**
