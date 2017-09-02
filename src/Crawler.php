@@ -89,6 +89,7 @@ class Crawler
     {
         $news = new \stdClass();
         $xml->registerXPathNamespace("n", "http://iptc.org/std/nar/2006-10-01/");
+        $news->code = (string)($xml->itemSet->newsItem['guid']);
         $news->title = (string)$xml->itemSet->newsItem->contentMeta->headline;
         $news->summary = (string)$xml->itemSet->newsItem->contentSet->inlineXML->nitf->body->{'body.head'}->abstract;
         $news->content = (string)$xml->itemSet->newsItem->contentSet->inlineXML->nitf->body->{'body.content'};
