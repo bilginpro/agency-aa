@@ -27,7 +27,7 @@ $ composer require bilginpro/agency-aa
 
 ``` php
 $crawler = new \BilginPro\Agency\Aa\Crawler([
-    'userName' => 'your-username',
+    'user_name' => 'your-username',
     'password' => 'your-password'
 ]);
 
