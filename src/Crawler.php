@@ -104,7 +104,7 @@ class Crawler
         $news->images = [];
         if (isset($xml->xpath('//n:newsItem/n:itemMeta/n:link[@rel="irel:seeAlso"]')[0]['residref'])) {
             $picture_id = (string)$xml->xpath('//n:newsItem/n:itemMeta/n:link[@rel="irel:seeAlso"]')[0]['residref'];
-            $news->images[] = $this->getDocumentLink($picture_id, 'web');
+            $news->images[] = $this->getDocumentLink($picture_id, 'print');
         }
         return $news;
     }
@@ -117,7 +117,7 @@ class Crawler
      */
     protected function getDocumentLink($id, $format)
     {
-        return self::API_BASE_URL . '/document/' . $id . '/' . $format;
+        return self::API_BASE_URL . '/abone/document/' . $id . '/' . $format;
     }
 
     /**
