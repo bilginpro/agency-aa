@@ -189,8 +189,8 @@ class Crawler
         if (array_key_exists('user_name', $config)) {
             $this->user_name = $config['user_name'];
         }
-        if (array_key_exists('user_name', $config)) {
-            $this->password = $config['user_name'];
+        if (array_key_exists('password', $config)) {
+            $this->password = $config['password'];
         }
 
         $this->auth = [$this->user_name, $this->password];
