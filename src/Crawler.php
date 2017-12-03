@@ -61,7 +61,6 @@ class Crawler
      */
     public function crawl($attributes = [])
     {
-
         $this->setAttributes($attributes);
 
         $result = [];
