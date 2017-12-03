@@ -61,20 +61,22 @@ class Crawler
      */
     public function crawl($attributes = [])
     {
+
         $this->setAttributes($attributes);
 
         $result = [];
 
+        usleep(500000);
         $search = $this->search();
 
-        usleep(300000);
+        usleep(500000);
         foreach ($search->data->result as $item) {
             $newsml = $this->document($item->id);
             if (!empty($newsml)) {
                 $news = $this->newsmlToNews($newsml);
                 $result[] = $news;
             }
-            usleep(300000);
+            usleep(500000);
         }
         return $result;
     }
