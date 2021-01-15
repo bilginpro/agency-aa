@@ -131,7 +131,10 @@ class Crawler
         $xml = null;
         $url = self::API_BASE_URL . '/abone/document/' . $id . '/newsml29?v=2' . rand(1000, 9999);
         $newsml = $this->fetchUrl($url, 'GET', ['auth' => $this->auth]);
-        $xml = simplexml_load_string($newsml);
+
+        if (!empty($newsml)) {
+            $xml = simplexml_load_string($newsml);
+        }
         return $xml;
     }
 
