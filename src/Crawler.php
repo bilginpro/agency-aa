@@ -223,11 +223,14 @@ class Crawler
     protected function fetchUrl($url, $method = 'GET', $options = [])
     {
         $client = new GuzzleHttp\Client();
-        $res = $client->request($method, $url, $options);
-        if ($res->getStatusCode() == 200) {
-            return (string)$res->getBody();
+        try {
+            $res = $client->request($method, $url, $options);
+            if ($res->getStatusCode() == 200) {
+                return (string)$res->getBody();
+            }
+        } catch (\GuzzleHttp\Exception\ClientException $exception) {
+            return '';
         }
-        return '';
     }
 
     /**
